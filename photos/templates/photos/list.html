@@ -4,14 +4,17 @@
 {% block title %}Lista zdjęć{% endblock %}
 
 {% block content %}
-  <h1>Lista zdjęć</h1>
-  <div>
+<h1>Lista zdjęć</h1>
+<div>
     {% for photo in photos %}
-      <span><a href="{% url "photos:details" photo.id %}">{{ photo.title }}</a></span>
+    <span>
+        <a href="{% url 'photos:details' photo.id %}">
+        <img src="{{ photo.img.url }}" alt="{{ photo.opis }}" width="10%">
+        </a>
+      </span>
 
     {% endfor %}
-  </div>
-
+</div>
 
 
 {% endblock %}
