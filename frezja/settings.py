@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "posts.apps.PostsConfig",
     "photos.apps.PhotosConfig",
     "tags.apps.TagsConfig",
+    "comments.apps.CommentsConfig",
 
 ]
 
