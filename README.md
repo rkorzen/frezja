@@ -152,7 +152,15 @@ lub
     :wq
 
 
+### isort
 
+isort .
+
+### flake8
+
+flake8
+
+flake8 sciezka do pliku
 
 
 
