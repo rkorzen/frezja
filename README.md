@@ -66,6 +66,76 @@ ale można też commitować z git message w poleceniu
     git commit -m "opis zmian"
 
 
+7. Dopisywanie zmian do poprzedniego commita
+
+    git commit -a --amend
+
+8. branche - gałęzie
+
+* tworzenie nowego brancha
+
+    git checkout -b <nazwa_brancha>
+
+* przełączanie się:
+
+    git checkout <nazwa brancha>
+
+* sprawdzanie jakie są branche i na którym jesteśmy:
+
+    git branch
+
+* git diff
+
+pokazuje różnice w stosunku do poprzedniego commita
+
+
+* mergowanie
+
+    git merge <nazwa brancha>
+
+merguje zmiany z <naazwa brancha> do bieżacego brancha na którym pracujemy
+
+master ---- A -- B --- C --- D --- E --------------------------------------
+                         \                                         / (będąc na master robimy git merge szablon_lista_postow)
+                         szablon_lista_postow - D1 --- D2 -- D3 ---
+
+
+* rebase 
+
+    git rebase <nazwa brancha>
+
+przesuwanie naszych zmian za zmiany z innego brancha
+
+master ---- A -- B --- C --- D --- E --------------------------------------
+                                    \                                         / (będąc na master robimy git merge szablon_lista_postow)
+                                     szablon_lista_postow - D1 --- D2 -- D3 ---
+
+na gałęzy szablon_lista_postow robimy:  
+git rebase master
+jeśli są konflikty to naprawiamy je i potem
+
+git rebase --continue
+
+* wymuszanie zmian w zdalnym repo
+
+L - local, O- origin (zdalne repo)
+
+L:  A --- B ---- C
+
+git push origin master:
+
+O:  A --- B ---- C
+
+- tutaj coś robimy  np jakiegoś rebse i zmienia się historia commitow
+
+L:  A --- B -- D -- C
+
+git push się nie powiedzie
+
+ale powiedzie się to:
+
+    git push -f origin master
+
 # vim
 
 i - tryb insert
