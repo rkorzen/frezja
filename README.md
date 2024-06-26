@@ -165,10 +165,6 @@ flake8
 flake8 sciezka do pliku
 
 
-
-
-
-
 xxxx
 
 ## Contributors
