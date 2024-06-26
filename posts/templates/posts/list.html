@@ -3,15 +3,14 @@
 {% block title %}Lista postów{% endblock %}
 
 {% block content %}
-  <h1>Lista postów</h1>
+<h1>Lista postów</h1>
 
-   {{ block.super }}
+{% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <div>{{ post.content }}</div>
+{% endfor %}
 
-  {{ dane }}
 
-  {{ user }}
-
-  {{ current_date }}
 {% endblock %}
 
 
