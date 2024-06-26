@@ -22,6 +22,9 @@ def list(request):
 
 
 def details(request, pk):
+
+    post = Post.objects.get(id=pk)
+
     return render(
-        request, "posts/details.html", {}
+        request, "posts/details.html", {"post":post}
     )
