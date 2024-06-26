@@ -12,7 +12,5 @@ def list(request):
 
 def details(request, pk):
     return render(
-        request,
-        "posts/details.html",
-        {}
+        request,"posts/details.html",{}
     )
