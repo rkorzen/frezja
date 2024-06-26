@@ -15,5 +15,5 @@ class Photo(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default="pending")
-
-    tags = models.ManyToManyField("tags.Tag", related_name="photos")
+    img = models.ImageField(upload_to="photos/%Y/%m/%d/", null=True)
+    tags = models.ManyToManyField("tags.Tag", related_name="photos", blank=True)

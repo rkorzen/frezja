@@ -2,5 +2,7 @@
 
 {% block content %}
   <h1>{{ photo.title }}</h1>
+  <div><smal>Created: {{ photo.created }}</smal></div>
   <div>{{ photo.opis }}</div>
+  <div><img src="{{ photo.img.url }}" alt="{{ photo.opis }}" width="100%"></div>
 {% endblock %}
