@@ -158,6 +158,8 @@ isort .
 
 ### flake8
 
+Zasady PEP8
+
 flake8
 
 flake8 sciezka do pliku

@@ -1,8 +1,15 @@
-from django.shortcuts import HttpResponse, render
+from django.shortcuts import render
+
 
 # Create your views here.
 
 def list(request):
+    dct = dict()
+    lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    index = 1
+
+    dct['key'] = lst[index]
+
     return render(
         request,
         "posts/list.html",
@@ -12,5 +19,5 @@ def list(request):
 
 def details(request, pk):
     return render(
-        request,"posts/details.html",{}
+        request, "posts/details.html", {}
     )
