@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load thumbnail %}
 
 {% block title %}Lista zdjęć{% endblock %}
 
@@ -9,7 +9,10 @@
     {% for photo in photos %}
     <span>
         <a href="{% url 'photos:details' photo.id %}">
-        <img src="{{ photo.img.url }}" alt="{{ photo.opis }}" width="10%">
+
+          {% thumbnail photo.img "140x120" crop="center" as im %}
+              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% endthumbnail %}
         </a>
       </span>
 

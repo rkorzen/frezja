@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "django_extensions",
+    'sorl.thumbnail',
 
     "posts.apps.PostsConfig",
     "photos.apps.PhotosConfig",

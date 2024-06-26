@@ -3,3 +3,5 @@ django==4.2.13
 gunicorn==22.0.0
 psycopg2-binary==2.9.9
 pillow==10.3.0
+sorl-thumbnail==12.10.0
+faker==2.9.0
