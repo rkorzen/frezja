@@ -1,0 +1,7 @@
+To jest część stałą
+
+Poniżej będzie część zmienna:
+
+{{ napis }}
+
+{{ xxx.name }}

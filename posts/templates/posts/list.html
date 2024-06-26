@@ -3,12 +3,41 @@
 {% block title %}Lista postów{% endblock %}
 
 {% block content %}
-<h1>Lista postów</h1>
+{##}
+{#  {{ lista }}#}
+{#  <ul>#}
+{#  {% for el in lista %}#}
+{#    <li>{{ el }}</li>#}
+{#  {% endfor %}#}
+{#  </ul>#}
+{##}
+{#  {{ lista.4 }}#}
+{##}
+{#  {{ slownik }}#}
+{#  {{ slownik.key }}#}
+{#  <br>#}
+{#  {{ napis|upper }}#}
 
-{% for post in posts %}
-    <h2>{{ post.title }}</h2>
-    <div>{{ post.content }}</div>
-{% endfor %}
+
+
+  <h1>Lista postów</h1>
+
+  <table class="table">
+  <thead>
+    <th>Tytuł</th>
+    <th>Autor</th>
+  </thead>
+  <tbody class="table-group-divider">
+  {% for post in posts %}
+    <tr>
+    <td><a href="{% url 'posts:details' post.id %}">{{ post.title }}</a></td>
+    <td>{{ post.author }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+  </table>
+
+
 
 
 {% endblock %}

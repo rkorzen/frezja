@@ -17,7 +17,12 @@ def list(request):
     return render(
         request,
         "posts/list.html",
-        {"posts": posts}
+        {
+            "posts": posts,
+            "slownik": dct,
+            "lista": lst,
+            "napis": "tekst jakiś tma",
+        }
     )
 
 
