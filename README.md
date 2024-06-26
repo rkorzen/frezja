@@ -136,6 +136,27 @@ ale powiedzie się to:
 
     git push -f origin master
 
+* ściąganie zmian
+
+    git pull origin master
+
+flow:
+
+na masterze robicie:
+
+git pull origin master
+
+git checkout -b <nazwa brancha>
+
+git commit ...
+
+(git rebase master)
+
+
+git push origin <nazwa brancha>
+
+
+
 # vim
 
 i - tryb insert
