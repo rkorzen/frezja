@@ -1,201 +1,195 @@
+Przepraszam za pominięcie przykładów. Oto zaktualizowane notatki z zachowaniem przykładów dotyczących Git:
+
 # Aplikacja Frezja
 
-http://127.0.0.1:8000/posts/
+**URL:**
+- Lista postów: `http://127.0.0.1:8000/posts/`
+- Szczegóły posta: `http://127.0.0.1:8000/posts/1`
 
-/posts/  - lista
-/posts/1 - szczegóły posta
+## HOWTO (Command Line)
 
-## HOWTO (Command line)
+### Wirtualne Środowiska
 
-### wirtualne środowiska
-
-1. Tworzenie
-
+1. **Tworzenie:**
+    ```sh
     python -m venv <nazwategosrodowiska>
     python -m venv .venv
+    ```
 
-2. Aktywacja
+2. **Aktywacja:**
+    - **Windows:**
+      ```sh
+      .venv\Scripts\activate
+      ```
+    - **Unix:**
+      ```sh
+      source .venv/bin/activate
+      ```
 
-* windows
-
-    .venv\Scripts\activate
-
-* Unix:
-
-    source .venv/bin/activate
-
-3. Deaktywacja:
-
+3. **Deaktywacja:**
+    ```sh
     deactivate
+    ```
 
+### Git
 
-### git
+1. **Klonowanie:**
+    ```sh
+    git clone <ścieżka np. z GitHub>
+    ```
 
-1. klonowanie:
-
-    git clone <ściezka np z github>
-
-2. status - sprawdzenie
-
+2. **Status - sprawdzenie:**
+    ```sh
     git status
+    ```
+    Informuje o plikach śledzonych, nieśledzonych, dodanych na stos.
 
-To nam powie co jest śledzone, nieśledzone, dodane na stos
-
-3. dodawanie plikow do stosu (przygotowanie do złożenia)
-
+3. **Dodawanie plików do stosu:**
+    ```sh
     git add <nazwa pliku>
-    
     git add .
+    ```
 
-4. resetowanie zmian do złożenia
-
+4. **Resetowanie zmian do złożenia:**
+    ```sh
     git reset
+    ```
 
-5. usuwanie śledzenia pliku
+5. **Usuwanie śledzenia pliku:**
+    ```sh
+    git rm --cached <ścieżka do pliku>
+    ```
 
-    git rm --cached <scieżka do pliku>
-
-6. Robienie commita
-
+6. **Robienie commita:**
+    ```sh
     git commit
-
-    po tym wpisujemy w edytorze git message. Zapisujemy i zamykamy plik i commit się kończy
-
-ale można też commitować z git message w poleceniu 
-
+    ```
+    Następnie wpisz wiadomość w edytorze, zapisz i zamknij plik, aby zakończyć commit.
+    Można również commitować z wiadomością w poleceniu:
+    ```sh
     git commit -m "opis zmian"
+    ```
 
-
-7. Dopisywanie zmian do poprzedniego commita
-
+7. **Dopisywanie zmian do poprzedniego commita:**
+    ```sh
     git commit -a --amend
+    ```
 
-8. branche - gałęzie
+8. **Branching - gałęzie:**
+    - **Tworzenie nowego brancha:**
+      ```sh
+      git checkout -b <nazwa_brancha>
+      ```
+    - **Przełączanie się:**
+      ```sh
+      git checkout <nazwa_brancha>
+      ```
+    - **Sprawdzanie istniejących branży:**
+      ```sh
+      git branch
+      ```
 
-* tworzenie nowego brancha
+9. **Pokazywanie różnic:**
+    ```sh
+    git diff
+    ```
+    Pokazuje różnice w stosunku do poprzedniego commita.
 
-    git checkout -b <nazwa_brancha>
+10. **Mergowanie:**
+    ```sh
+    git merge <nazwa_brancha>
+    ```
+    Merguje zmiany z `<nazwa_brancha>` do bieżącego brancha.
 
-* przełączanie się:
+    **Przykład:**
+    ```
+    master ---- A -- B --- C --- D --- E -----------------
+                         \                        / 
+                     szablon_lista_postow - D1 --- D2 -- D3
+    ```
+    - Będąc na master robimy:
+      ```sh
+      git merge szablon_lista_postow
+      ```
 
-    git checkout <nazwa brancha>
+11. **Rebase:**
+    ```sh
+    git rebase <nazwa_brancha>
+    ```
+    Przesuwa nasze zmiany za zmiany z innego brancha.
 
-* sprawdzanie jakie są branche i na którym jesteśmy:
+    **Przykład:**
+    ```
+    master ---- A -- B --- C --- D --- E -----------------
+                                    \                  / 
+                                szablon_lista_postow - D1 --- D2 -- D3
+    ```
+    - Na gałęzi `szablon_lista_postow` robimy:
+      ```sh
+      git rebase master
+      ```
+    - Jeśli są konflikty, napraw je, a następnie:
+      ```sh
+      git rebase --continue
+      ```
 
-    git branch
+12. **Wymuszanie zmian w zdalnym repozytorium:**
+    - Stan lokalny:
+      ```
+      L:  A --- B ---- C
+      ```
+    - Po `git push origin master`:
+      ```
+      O:  A --- B ---- C
+      ```
+    - Po rebase lub innej operacji, historia commitów zmienia się:
+      ```
+      L:  A --- B -- D -- C
+      ```
+    - `git push` się nie powiedzie, ale:
+      ```sh
+      git push -f origin master
+      ```
+      zakończy się powodzeniem.
 
-* git diff
-
-pokazuje różnice w stosunku do poprzedniego commita
-
-
-* mergowanie
-
-    git merge <nazwa brancha>
-
-merguje zmiany z <naazwa brancha> do bieżacego brancha na którym pracujemy
-
-master ---- A -- B --- C --- D --- E --------------------------------------
-                         \                                         / (będąc na master robimy git merge szablon_lista_postow)
-                         szablon_lista_postow - D1 --- D2 -- D3 ---
-
-
-* rebase 
-
-    git rebase <nazwa brancha>
-
-przesuwanie naszych zmian za zmiany z innego brancha
-
-master ---- A -- B --- C --- D --- E --------------------------------------
-                                    \                                         / (będąc na master robimy git merge szablon_lista_postow)
-                                     szablon_lista_postow - D1 --- D2 -- D3 ---
-
-na gałęzy szablon_lista_postow robimy:  
-git rebase master
-jeśli są konflikty to naprawiamy je i potem
-
-git rebase --continue
-
-* wymuszanie zmian w zdalnym repo
-
-L - local, O- origin (zdalne repo)
-
-L:  A --- B ---- C
-
-git push origin master:
-
-O:  A --- B ---- C
-
-- tutaj coś robimy  np jakiegoś rebse i zmienia się historia commitow
-
-L:  A --- B -- D -- C
-
-git push się nie powiedzie
-
-ale powiedzie się to:
-
-    git push -f origin master
-
-* ściąganie zmian
-
+13. **Ściąganie zmian:**
+    ```sh
     git pull origin master
+    ```
 
-flow:
+14. **Flow:**
+    - Na masterze:
+      ```sh
+      git pull origin master
+      git checkout -b <nazwa_brancha>
+      git commit ...
+      git push origin <nazwa_brancha>
+      ```
 
-na masterze robicie:
+### Vim
 
-git pull origin master
+- **Tryb insert:** `i`
+- **Tryb poleceń:** `esc` (lub `ctrl + c` na Windows w PyCharmie)
 
-git checkout -b <nazwa brancha>
-
-git commit ...
-
-(git rebase master)
-
-
-git push origin <nazwa brancha>
-
-
-
-# vim
-
-i - tryb insert
-esc - tryb poleceń  (ctrl c - na windowsie - w pycharmie) 
-
-polecenia wydajemy w trybie polecń
-
-
+**Polecenia w trybie poleceń:**
+    ```sh
     :w
     :q
-
-lub
-
     :wq
-
+    ```
 
 ### isort
 
-isort .
+- Uruchomienie: `isort .`
 
 ### flake8
 
-Zasady PEP8
-
-flake8
-
-flake8 sciezka do pliku
-
-
-xxxx
+- **Zasady PEP8:**
+  - Uruchomienie: `flake8`
+  - Uruchomienie dla konkretnego pliku: `flake8 ścieżka_do_pliku`
 
 ## Contributors
-- [AM]
-- [PP]
-- [MS]
-- [RK]
-drugi
-trzeci
-
-czwarty
-
-
+- AM
+- PP
+- MS
+- RK
