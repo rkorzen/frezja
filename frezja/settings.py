@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+WHICH_DB = os.environ.get("WHICH_DB", "default")
+if WHICH_DB not in ["default", "postgres"]:
+    raise ValueError("WHICH_DB musi mieć wartosść 'default' lub 'postgres'")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -81,22 +85,26 @@ WSGI_APPLICATION = "frezja.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if WHICH_DB == "default":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-    #
-    # "default": {
-    #     "ENGINE": "django.db.backends.postgresql",
-    #     "NAME": "frezjadb",
-    #     "USER": "postgres",
-    #     "PASSWORD": "postgres",
-    #     "HOST": "127.0.0.1",
-    #     "PORT": "5432",
-    # }
+elif WHICH_DB == "postgres":
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "frezjadb",
+            "USER": "postgres",
+            "PASSWORD": "postgres",
+            "HOST": "127.0.0.1",
+            "PORT": "5432",
+        }
+    }
 
-}
+print("Wybrano bazę: ", WHICH_DB)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
