@@ -1,9 +1,13 @@
+
 from django.shortcuts import render
+
+from posts.models import Post
 
 
 # Create your views here.
 
 def list(request):
+    posts = Post.objects.all()
     dct = dict()
     lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     index = 1
@@ -13,7 +17,7 @@ def list(request):
     return render(
         request,
         "posts/list.html",
-        {"dane": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+        {"posts": posts}
     )
 
 
