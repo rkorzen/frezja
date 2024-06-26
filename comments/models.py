@@ -13,4 +13,4 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class PostComment(Comment):
-    post = models.ForeignKey("posts.Post", on_delete=models.CASCADE)
+    post = models.ForeignKey("posts.Post", on_delete=models.CASCADE, related_name="comments")
