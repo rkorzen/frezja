@@ -4,5 +4,6 @@ flake8
 pytest
 ipython
 django-extensions
+isort
 
 -r requirements.txt
