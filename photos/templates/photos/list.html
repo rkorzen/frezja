@@ -5,8 +5,10 @@
 {% block content %}
   <h1>Lista zdjęć</h1>
 
-   {{ block.super }}
-
+    {% for photo in photos %}
+        <h2>{{ photo.title }}</h2>
+        <div>{{ photo.opis }}</div>
+    {% endfor %}
 {% endblock %}
 
 
