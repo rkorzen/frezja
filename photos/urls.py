@@ -5,5 +5,9 @@ from . import views
 app_name = "photos"  # posts:list
 urlpatterns = [
     path("", views.list, name="list"),
+    path("galleries", views.galleries, name="galleries"),
+    path("galleries/<int:pk>", views.gallery, name="gallery"),
     path("<int:pk>", views.details, name="details"),
 ]
+
+

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+{% block title %}Lista zdjęć{% endblock %}
+{% block content %}
+    <h1>lista galerii</h1>
+    <div>
+        {% for gallery in page.object_list %} tekst testowy
+            <span>
+                <a href="{% url 'photos:gallery' gallery.id %}"> {{ gallery.title }} </a>
+
+        </span>
+    {% endfor %}
+</div>
+{% include "includes/pagination.html" %}
+{% endblock %}
