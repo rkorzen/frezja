@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if message %}<div class="alert alert-success" role="alert">{{ message }}</div>{% endif %}
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="container mt-5 col-6">{% crispy form %}</div>
+        <div class="col-3"></div>
+    </div>
+{% endblock %}
