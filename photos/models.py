@@ -17,3 +17,7 @@ class Photo(models.Model):
     status = models.CharField(max_length=9, choices=STATUS_CHOICES, default="pending")
     img = models.ImageField(upload_to="photos/%Y/%m/%d/", null=True)
     tags = models.ManyToManyField("tags.Tag", related_name="photos", blank=True)
+
+
+    def __str__(self):
+        return self.title
