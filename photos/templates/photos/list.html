@@ -6,7 +6,7 @@
 {% block content %}
   <h1>Lista zdjęć</h1>
   <div>
-    {% for photo in photos %}
+    {% for photo in page.object_list %}
       <span>
         <a href="{% url 'photos:details' photo.id %}">
 
@@ -19,25 +19,7 @@
     {% endfor %}
 </div>
 
-  <div class="pagination">
-    {% if page.has_previous %}
-      <spam>
-        <a href="?page=1">first</a> |
-        <a href="?page={{ page.previous_page_number }}">previous</a>
-      </spam>
-    {% endif %}
-
-    <span>
-    &nbsp;&nbsp;  Page {{ page.number }} / {{ page.paginator.num_pages }}&nbsp;&nbsp;
-    </span>
-    {% if page.has_next %}
-      <span>
-      <a href="?page={{ page.next_page_number }}">next</a> |
-      <a href="?page={{ page.paginator.num_pages }}">last</a>
-      </span>
-    {% endif %}
-
-  </div>
+{% include "includes/pagination.html" %}
 
 {% endblock %}
 

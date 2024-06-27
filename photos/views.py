@@ -15,7 +15,7 @@ def list(request):
     return render(
         request,
         "photos/list.html",
-        dict(photos=page_obj.object_list, page=page_obj)
+        dict(page=page_obj)
     )
 
 
