@@ -4,14 +4,14 @@
 {% block title %}Lista zdjęć{% endblock %}
 
 {% block content %}
-<h1>Lista zdjęć</h1>
-<div>
+  <h1>Lista zdjęć</h1>
+  <div>
     {% for photo in photos %}
-    <span>
+      <span>
         <a href="{% url 'photos:details' photo.id %}">
 
-          {% thumbnail photo.img "140x120" crop="center" as im %}
-              <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+          {% thumbnail photo.img "180x120" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
           {% endthumbnail %}
         </a>
       </span>
@@ -19,6 +19,25 @@
     {% endfor %}
 </div>
 
+  <div class="pagination">
+    {% if page.has_previous %}
+      <spam>
+        <a href="?page=1">first</a> |
+        <a href="?page={{ page.previous_page_number }}">previous</a>
+      </spam>
+    {% endif %}
+
+    <span>
+    &nbsp;&nbsp;  Page {{ page.number }} / {{ page.paginator.num_pages }}&nbsp;&nbsp;
+    </span>
+    {% if page.has_next %}
+      <span>
+      <a href="?page={{ page.next_page_number }}">next</a> |
+      <a href="?page={{ page.paginator.num_pages }}">last</a>
+      </span>
+    {% endif %}
+
+  </div>
 
 {% endblock %}
 
