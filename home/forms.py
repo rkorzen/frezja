@@ -3,7 +3,8 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit, Button, Reset, HTML
 import re
 
-id_pattern = re.compile("\d{3}-\w{2}-\d{3}")
+id_pattern = re.compile(r"\d{3}-\w{2}-\d{3}")
+
 
 class ContactForm(forms.Form):
     id = forms.CharField(max_length=10, required=False)
@@ -37,6 +38,5 @@ class ContactForm(forms.Form):
             "content",
             Submit("submit", "Wyslij"),
             Reset("reset", "Resetuj"),
-            Button("xxx", "XXXX")
+            Button("xxx", "XXXX"),
         )
-

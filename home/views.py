@@ -7,9 +7,7 @@ from .forms import ContactForm
 
 # Create your views here.
 def home(request):
-    return render(
-        request, "base.html", {}
-    )
+    return render(request, "base.html", {})
 
 
 def contact(request):
@@ -24,7 +22,7 @@ def contact(request):
             UserInquiry.objects.create(
                 name=form.cleaned_data["name"],
                 email=form.cleaned_data["email"],
-                message=form.cleaned_data["content"]
+                message=form.cleaned_data["content"],
             )
 
             messages.add_message(request, messages.SUCCESS, "Zgłoszenie przyjęte")
@@ -34,6 +32,4 @@ def contact(request):
             #     request, "contact.html", {"message": message, "form": form}
             # )
 
-    return render(
-        request, "contact.html", {"message": message, "form": form}
-    )
+    return render(request, "contact.html", {"message": message, "form": form})

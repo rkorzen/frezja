@@ -3,6 +3,7 @@ from django.template import Node
 
 register = template.Library()
 
+
 @register.filter
 def first_words(value, n):
 

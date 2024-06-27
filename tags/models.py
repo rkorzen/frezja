@@ -4,6 +4,7 @@ from django.template.defaultfilters import slugify
 
 # Create your models here.
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, blank=True)

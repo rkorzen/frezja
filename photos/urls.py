@@ -7,7 +7,6 @@ urlpatterns = [
     path("", views.list, name="list"),
     path("galleries", views.galleries, name="galleries"),
     path("galleries/<int:pk>", views.gallery, name="gallery"),
+    path("create", views.create, name="create"),
     path("<int:pk>", views.details, name="details"),
 ]
-
-

@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -39,19 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "django_extensions",
-    'sorl.thumbnail',
+    "sorl.thumbnail",
     "crispy_forms",
     "crispy_bootstrap5",
-
-
     "posts.apps.PostsConfig",
     "photos.apps.PhotosConfig",
     "tags.apps.TagsConfig",
     "comments.apps.CommentsConfig",
     "home.apps.HomeConfig",
-
 ]
 
 MIDDLEWARE = [
@@ -63,7 +60,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # "posts.middleware.SimpleMiddleware",
-
 ]
 
 ROOT_URLCONF = "frezja.urls"
