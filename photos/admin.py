@@ -5,5 +5,4 @@ from .models import Photo
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ['title', 'created', "modified", "status"]
-
     list_filter = ["status"]
