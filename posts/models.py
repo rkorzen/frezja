@@ -9,6 +9,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    publication_date = models.DateTimeField(null=True)
+    publication_date = models.DateTimeField(null=True, blank=True)
     author = models.ForeignKey("auth.User", on_delete=models.CASCADE)
-    tags = models.ManyToManyField("tags.Tag", related_name="posts")
+    tags = models.ManyToManyField("tags.Tag", related_name="posts", blank=True)
