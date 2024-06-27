@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
 from home.models import UserInquiry
+from .forms import ContactForm
 
 
 # Create your views here.
@@ -13,24 +15,25 @@ def home(request):
 def contact(request):
 
     message = None
-
+    form = ContactForm()
     if request.method == "POST":
 
-        print(request.POST)
+        form = ContactForm(request.POST)
+        if form.is_valid():
 
-        adres_email = request.POST.get("email")
-        imie = request.POST.get("name")
-        content = request.POST.get("content")
+            UserInquiry.objects.create(
+                name=form.cleaned_data["name"],
+                email=form.cleaned_data["email"],
+                message=form.cleaned_data["content"]
+            )
 
-        UserInquiry.objects.create(
-            name=imie,
-            email=adres_email,
-            message=content
-        )
-
-        message = "Dziekujemy za zgłoszenie. Odpowiadamy na podany adres email."
-        message = "Dziękujemy za zgłoszenie!"
+            messages.add_message(request, messages.SUCCESS, "Zgłoszenie przyjęte")
+            return redirect("photos:list")
+            # form = ContactForm()
+            # render(
+            #     request, "contact.html", {"message": message, "form": form}
+            # )
 
     return render(
-        request, "contact.html", {"message": message}
+        request, "contact.html", {"message": message, "form": form}
     )

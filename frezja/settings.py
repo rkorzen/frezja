@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     "django_extensions",
     'sorl.thumbnail',
+    "crispy_forms",
+    "crispy_bootstrap5",
+
 
     "posts.apps.PostsConfig",
     "photos.apps.PhotosConfig",
@@ -152,3 +155,6 @@ MEDIA_ROOT = BASE_DIR / "uploads"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 SHELL_PLUS_PRINT_SQL = True
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

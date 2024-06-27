@@ -1,26 +1,18 @@
 {% extends "base.html" %}
 {% load thumbnail %}
-
 {% block title %}Lista zdjęć{% endblock %}
-
 {% block content %}
-  <h1>Lista zdjęć</h1>
-  <div>
-    {% for photo in page.object_list %}
-      <span>
-        <a href="{% url 'photos:details' photo.id %}">
-
-          {% thumbnail photo.img "180x120" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-          {% endthumbnail %}
-        </a>
-      </span>
-
+    <h1>Lista zdjęć</h1>
+    <div>
+        {% for photo in page.object_list %}
+            <span>
+                <a href="{% url 'photos:details' photo.id %}">
+                    {% thumbnail photo.img "180x120" crop="center" as im %}
+                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+                {% endthumbnail %}
+            </a>
+        </span>
     {% endfor %}
 </div>
-
 {% include "includes/pagination.html" %}
-
 {% endblock %}
-
-

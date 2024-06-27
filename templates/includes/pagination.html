@@ -1,19 +1,15 @@
-  <div class="pagination">
+<div class="pagination">
     {% if page.has_previous %}
-      <spam>
+        <spam>
         <a href="?page=1">first</a> |
         <a href="?page={{ page.previous_page_number }}">previous</a>
-      </spam>
+        </spam>
     {% endif %}
-
-    <span>
-    &nbsp;&nbsp;  Page {{ page.number }} / {{ page.paginator.num_pages }}&nbsp;&nbsp;
-    </span>
+    <span>&nbsp;&nbsp;  Page {{ page.number }} / {{ page.paginator.num_pages }}&nbsp;&nbsp;</span>
     {% if page.has_next %}
-      <span>
-      <a href="?page={{ page.next_page_number }}">next</a> |
-      <a href="?page={{ page.paginator.num_pages }}">last</a>
-      </span>
+        <span>
+            <a href="?page={{ page.next_page_number }}">next</a> |
+            <a href="?page={{ page.paginator.num_pages }}">last</a>
+        </span>
     {% endif %}
-
-  </div>
+</div>

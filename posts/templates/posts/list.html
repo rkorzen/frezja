@@ -1,49 +1,41 @@
 {% extends "base.html" %}
-
+{% load mytags %}
 {% block title %}Lista postów{% endblock %}
-
 {% block content %}
-{##}
-{#  {{ lista }}#}
-{#  <ul>#}
-{#  {% for el in lista %}#}
-{#    <li>{{ el }}</li>#}
-{#  {% endfor %}#}
-{#  </ul>#}
-{##}
-{#  {{ lista.4 }}#}
-{##}
-{#  {{ slownik }}#}
-{#  {{ slownik.key }}#}
-{#  <br>#}
-{#  {{ napis|upper }}#}
+    {##}
+    {#  {{ lista }}#}
+    {#  <ul>#}
+    {#  {% for el in lista %}#}
+    {#    <li>{{ el }}</li>#}
+    {#  {% endfor %}#}
+    {#  </ul>#}
+    {##}
+    {#  {{ lista.4 }}#}
+    {##}
+    {#  {{ slownik }}#}
+    {#  {{ slownik.key }}#}
+    {#  <br>#}
+    {#  {{ napis|upper }}#}
+    <h1>Lista postów</h1>
+    <table class="table">
+        <thead>
+            <th>Tytuł</th>
+            <th>Opis...</th>
+            <th>Autor</th>
 
+        </thead>
+        <tbody class="table-group-divider">
+            {% for post in page.object_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'posts:details' post.id %}">{{ post.title }}</a>
+                    </td>
+                    <td>{{ post.content|first_words:10 }}</td>
+                    <td>{{ post.author }}</td>
 
-
-  <h1>Lista postów</h1>
-
-  <table class="table">
-  <thead>
-    <th>Tytuł</th>
-    <th>Autor</th>
-    <th>is_published</th>
-
-  </thead>
-  <tbody class="table-group-divider">
-  {% for post in page.object_list %}
-    <tr>
-    <td><a href="{% url 'posts:details' post.id %}">{{ post.title }}</a></td>
-    <td>{{ post.author }}</td>
-    <td>{{ post.is_published }}</td>
-  </tr>
-  {% endfor %}
-  </tbody>
-  </table>
-
-{% include "includes/pagination.html" %}
-
-
-
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "includes/pagination.html" %}
 {% endblock %}
-
-
