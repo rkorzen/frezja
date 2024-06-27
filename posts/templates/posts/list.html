@@ -26,12 +26,15 @@
   <thead>
     <th>Tytuł</th>
     <th>Autor</th>
+    <th>is_published</th>
+
   </thead>
   <tbody class="table-group-divider">
   {% for post in page.object_list %}
     <tr>
     <td><a href="{% url 'posts:details' post.id %}">{{ post.title }}</a></td>
     <td>{{ post.author }}</td>
+    <td>{{ post.is_published }}</td>
   </tr>
   {% endfor %}
   </tbody>

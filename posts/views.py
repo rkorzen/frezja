@@ -1,3 +1,4 @@
+from django.utils import timezone
 
 from django.shortcuts import render
 
@@ -7,7 +8,8 @@ from django.core.paginator import Paginator
 # Create your views here.
 
 def list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(is_published=True).filter(publication_date__lte=timezone.now())
+
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
