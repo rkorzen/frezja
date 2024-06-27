@@ -5,4 +5,3 @@ psycopg2-binary==2.9.9
 pillow==10.3.0
 sorl-thumbnail==12.10.0
 faker==25.9.2
-requests
