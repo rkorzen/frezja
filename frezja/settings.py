@@ -97,11 +97,11 @@ elif WHICH_DB == "postgres":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "frezjadb",
-            "USER": "postgres",
-            "PASSWORD": "postgres",
-            "HOST": "127.0.0.1",
-            "PORT": "5432",
+            "NAME": os.environ.get("DBNAME"),
+            "USER": os.environ.get("DBUSER"),
+            "PASSWORD": os.environ.get("DBPASSWORD"),
+            "HOST": os.environ.get("DBHOST"),
+            "PORT": os.environ.get("DBPORT")
         }
     }
 

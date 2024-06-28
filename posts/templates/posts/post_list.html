@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load mytags %}
+{% block title %}Lista postów{% endblock %}
+{% block content %}
+
+    <h1>Lista postów</h1>
+    <a class="btn btn-primary" href="{% url "posts:create" %}">Dodaj nowy</a>
+    <table class="table">
+        <thead>
+            <th>Tytuł</th>
+            <th>Opis...</th>
+            <th>Autor</th>
+
+        </thead>
+        <tbody class="table-group-divider">
+            {% for post in object_list %}
+                <tr>
+                    <td>
+                        <a href="{% url 'posts:details' post.id %}">{{ post.title }}</a>
+                    </td>
+                    <td>{{ post.content|first_words:10 }}</td>
+                    <td>{{ post.author }}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "includes/pagination_class_based.html" %}
+{% endblock %}

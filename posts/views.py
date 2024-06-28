@@ -1,9 +1,13 @@
-from django.utils import timezone
+from django.urls import reverse
+
+
 from django.contrib import messages
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
+from django.utils import timezone
+from django.views.generic import ListView, DetailView, CreateView
 
 from posts.models import Post
-from django.core.paginator import Paginator
 from .forms import PostForm
 
 
@@ -27,12 +31,23 @@ def list(request):
     )
 
 
+class PostListView(ListView):
+    model = Post
+    paginate_by = 10
+
+
+
 def details(request, pk):
     post = Post.objects.get(id=pk)
 
     return render(
         request, "posts/details.html", {"post": post}
     )
+
+
+class PostDetailView(DetailView):
+    model = Post
+    # context_object_name = "post"
 
 
 def create(request):
@@ -48,3 +63,15 @@ def create(request):
     return render(
         request, "posts/create.html", {"form": form}
     )
+
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ["title", "content"]
+    def get_success_url(self):
+        return reverse("posts:list")
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

@@ -6,5 +6,5 @@ ipython
 django-extensions
 isort
 djlint
-
+python-dotenv
 -r requirements.txt
