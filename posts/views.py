@@ -4,9 +4,9 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from django.utils import timezone
+from django.utils import timezone, translation
 from django.views.generic import ListView, DetailView, CreateView
-
+from django.utils.translation import gettext as _
 from posts.models import Post
 from .forms import PostForm
 
@@ -15,6 +15,7 @@ from .forms import PostForm
 
 
 def list(request):
+
     posts = Post.objects.filter(is_published=True).filter(
         publication_date__lte=timezone.now()
     )
@@ -27,7 +28,7 @@ def list(request):
     return render(
         request,
         "posts/list.html",
-        dict(posts=page_obj.object_list, page=page_obj)
+        dict(posts=page_obj.object_list, page=page_obj, xxx=_("Dodaj nowy")),
     )
 
 

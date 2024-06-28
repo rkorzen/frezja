@@ -4,7 +4,12 @@
 {% block content %}
 
     <h1>Lista postów</h1>
-    <a class="btn btn-primary" href="{% url "posts:create" %}">Dodaj nowy</a>
+
+    {% blocktrans %}Cos{% endblocktrans %}
+
+    {% trans "Cos" %}
+
+    <a class="btn btn-primary" href="{% url "posts:create" %}">{{ xxx }}</a>
     <table class="table">
         <thead>
             <th>Tytuł</th>

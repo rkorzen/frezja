@@ -62,12 +62,13 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "posts.middleware.SimpleMiddleware",
+    "posts.middleware.SimpleMiddleware",
 ]
 
 ROOT_URLCONF = "frezja.urls"
@@ -137,7 +138,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 # LANGUAGE_CODE = "en-us"
-LANGUAGE_CODE = "pl-pl"
+LANGUAGE_CODE = "en-US"
+
+LANGUAGES = [
+    ("en", "English"),
+    ("pl", "Polish"),
+
+]
 
 TIME_ZONE = "UTC"
 
@@ -174,3 +181,4 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # }
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+LOCALE_PATHS = (BASE_DIR / "locale",)

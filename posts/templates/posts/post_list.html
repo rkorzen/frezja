@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load mytags %}
+{% load i18n %}
 {% block title %}Lista postów{% endblock %}
 {% block content %}
 
     <h1>Lista postów</h1>
-    <a class="btn btn-primary" href="{% url "posts:create" %}">Dodaj nowy</a>
+    <a class="btn btn-primary" href="{% url "posts:create" %}">{% trans "Dodaj nowy" %}xxx</a>
     <table class="table">
         <thead>
             <th>Tytuł</th>
