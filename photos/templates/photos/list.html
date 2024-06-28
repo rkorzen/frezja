@@ -3,6 +3,7 @@
 {% block title %}Lista zdjęć{% endblock %}
 {% block content %}
     <h1>Lista zdjęć</h1>
+    <a class="btn btn-primary" href="{% url "photos:create" %}">Dodaj nowe photo</a>
     <div>
         {% for photo in page.object_list %}
             <span>

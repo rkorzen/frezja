@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .views import create
+
 
 app_name = "posts"  # posts:list
 urlpatterns = [

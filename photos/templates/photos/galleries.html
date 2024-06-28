@@ -3,13 +3,22 @@
 {% block title %}Lista zdjęć{% endblock %}
 {% block content %}
     <h1>lista galerii</h1>
-    <div>
-        {% for gallery in page.object_list %} tekst testowy
-            <span>
-                <a href="{% url 'photos:gallery' gallery.id %}"> {{ gallery.title }} </a>
+    <a href="{% url "photos:create-gallery" %}" class="btn btn-primary">Utwórz galerię</a>
 
-        </span>
-    {% endfor %}
+    <table class="table">
+      <thead>
+        <th>Nazwa</th>
+        <th>Opis</th>
+      </thead>
+    <tbody>
+        {% for gallery in page.object_list %}
+          <tr>
+            <td><a href="{% url 'photos:gallery' gallery.id %}"> {{ gallery.title }} </a></td>
+            <td>{{ gallery.description }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+    </table>
 </div>
 {% include "includes/pagination.html" %}
 {% endblock %}

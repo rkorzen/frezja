@@ -2,21 +2,9 @@
 {% load mytags %}
 {% block title %}Lista postów{% endblock %}
 {% block content %}
-    {##}
-    {#  {{ lista }}#}
-    {#  <ul>#}
-    {#  {% for el in lista %}#}
-    {#    <li>{{ el }}</li>#}
-    {#  {% endfor %}#}
-    {#  </ul>#}
-    {##}
-    {#  {{ lista.4 }}#}
-    {##}
-    {#  {{ slownik }}#}
-    {#  {{ slownik.key }}#}
-    {#  <br>#}
-    {#  {{ napis|upper }}#}
+
     <h1>Lista postów</h1>
+    <a class="btn btn-primary" href="{% url "posts:create" %}">Dodaj nowy</a>
     <table class="table">
         <thead>
             <th>Tytuł</th>

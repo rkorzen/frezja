@@ -70,3 +70,8 @@ def gallery(request, pk):
         "photos/list.html",
         dict(page=page_obj)
     )
+
+
+
+def create_gallery(request):
+    return render(request, "photos/create_gallery.html")
