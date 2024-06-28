@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 # Create your models here.
@@ -22,6 +23,13 @@ class Photo(models.Model):
     def __str__(self):
         return self.title
 
+
+    def thumbnail(self):
+        if self.img:
+            return mark_safe(f'<img src="{self.img.url}" width="100">')
+        return ""
+
+    thumbnail.shor_description = "Thumbnail"
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()

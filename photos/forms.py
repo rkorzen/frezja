@@ -1,6 +1,6 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from django.forms import ModelForm
+from django.forms import ModelForm, modelformset_factory
 
 from .models import Photo, Gallery
 
@@ -36,3 +36,9 @@ class GalleryForm(ModelForm):
             Submit("submit", "Wyslij"),
         )
 
+PhotoFormSet = modelformset_factory(
+    Photo,
+    form=PhotoForm,
+    extra=1,
+    can_delete=True,
+)

@@ -5,10 +5,15 @@ from .models import Photo, Gallery
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    list_display = ["title", "created", "modified", "status"]
+    list_display = ["title", "created", "modified", "status", "thumbnail"]
     list_filter = ["status"]
+
+
+class GalleryPhotosInline(admin.StackedInline):
+    model = Gallery.photos.through
+    extra = 1
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ['title', 'created', "modified"]
-    # filter_horizontal = ["photos"]
+    exclude = ["photos"]
+    inlines = [GalleryPhotosInline]

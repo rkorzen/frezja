@@ -2,8 +2,43 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  $(document).ready(function (){
+      $('#add-form').click(
+          function (){
+              var formIdx = $('#id_form-TOTAL_FORMS').val();
+              var newFormHtml = $('#empty_form').html().replace(/__prefix__/g, formIdx);
+              $('#formset').append(newFormHtml);
+              $('#id_form-TOTAL_FORMS').val(parseInt(formIdx) + 1);
+          });
+      });
+  </script>
+
 <div class="card mb-3">
     <h5>Dodanie galerii</h5>
-    {% crispy form %}
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+
+      <div>Zdjęcia: </div>
+      <div id="formset">
+        {{ photo_formset.management_form }}
+        {% for f in photo_formset %}
+          <div class="form-row">
+            {{ f|crispy }}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div id="empty_form" style="display: none;">
+        <div class="form-row">
+          {{ photo_formset.empty_form|crispy }}
+        </div>
+      </div>
+      <button type="button" id="add-form">Dodaj kolejne zdjęcie</button>
+      <button type="submit">Zapisz Galerię</button>
+    </form>
+
 </div>
 {% endblock content %}

@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
-from photos.forms import PhotoForm, GalleryForm
+from photos.forms import PhotoForm, GalleryForm, PhotoFormSet
 from photos.models import Gallery
 from photos.models import Photo
 
@@ -72,12 +72,19 @@ def gallery(request, pk):
     )
 
 
-
 def create_gallery(request):
     form = GalleryForm()
-    if request.method=="POST":
-        form=GalleryForm(request.POST)
-        if form.is_valid():
-            form.save()
+    photo_formset = PhotoFormSet(queryset=Photo.objects.none())
+    if request.method == "POST":
+        form = GalleryForm(request.POST)
+        photo_formset = PhotoFormSet(request.POST, request.FILES, queryset=Photo.objects.none())
+
+        if form.is_valid() and photo_formset.is_valid():
+            gallery = form.save()
+            for f in photo_formset:
+                photo = f.save()
+                gallery.photos.add(photo)
+            gallery.save()
+
             return redirect("photos:galleries")
-    return render(request, "photos/create_gallery.html",  {"form": form})
+    return render(request, "photos/create_gallery.html", {"form": form, "photo_formset": photo_formset})
