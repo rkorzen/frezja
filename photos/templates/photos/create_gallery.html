@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<div class="card mb-3">
+    <h5>Dodanie galerii</h5>
+    {% crispy form %}
+</div>
+{% endblock content %}
