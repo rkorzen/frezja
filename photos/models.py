@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.safestring import mark_safe
+from sorl.thumbnail import get_thumbnail
 
 
 # Create your models here.
@@ -24,12 +25,15 @@ class Photo(models.Model):
         return self.title
 
 
-    def thumbnail(self):
-        if self.img:
-            return mark_safe(f'<img src="{self.img.url}" width="100">')
-        return ""
+    # def thumbnail(self, obj):
+    #     if obj.img:
+    #         thumb = get_thumbnail(obj.img, "100")
+    #         return mark_safe(f'<img src="{thumb.url}">')
+    #
+    #     return ""
+    #
+    # thumbnail.short_description = "Thumbnail"
 
-    thumbnail.shor_description = "Thumbnail"
 class Gallery(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
